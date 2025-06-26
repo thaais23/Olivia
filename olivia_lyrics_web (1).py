@@ -1,8 +1,33 @@
 import streamlit as st
 import random
 
-# ---------- DATA -----------
+# ---------- ESTILO PERSONALIZADO OLIVIA RODRIGO ----------
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #f8f0fb;
+    }
+    h1, h2, h3, h4 {
+        font-family: Georgia, serif;
+        color: #6a0dad;
+    }
+    .stButton>button {
+        background-color: #d6b3f9;
+        color: black;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+    .stRadio > div {
+        color: #4b007d;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
+# ---------- DATA -----------
 canciones_por_album = {
     "SOUR": {
         "drivers license": "I got my driver's license last week just like we always talked about...",
@@ -14,7 +39,7 @@ canciones_por_album = {
         "vampire": "Hate to give the satisfaction asking how you're doing now...",
         "bad idea right?": "I know I should stop, but I can't...",
         "get him back!": "I wanna get him back, I wanna make him really jealous...",
-        "making the bed": "I’m making the bed and lying it too..."
+        "making the bed": "I’m making the bed and lying in it too..."
     }
 }
 
@@ -38,19 +63,31 @@ letras_por_emocion = {
 }
 
 # ---------- APP -----------
-
 st.set_page_config(page_title="Rodriletras", page_icon="🎵")
-st.title("🎵 RodriLetras: Explora las letras de Olivia Rodrigo")
 
-menu = st.sidebar.radio("Selecciona una sección:", ["🔍 Buscador", "🎮 Juegos", "🎭 Según tu emoción"])
+st.sidebar.image("https://i.imgur.com/eI7yKvt.jpg", width=200)
+st.sidebar.title("RodriLetras 💜")
+menu = st.sidebar.radio("Navegación:", ["🏠 Inicio", "🔍 Buscador", "🎮 Juegos", "🎭 Según tu emoción"])
+
+# ---------- INICIO -----------
+if menu == "🏠 Inicio":
+    st.image("https://i.imgur.com/JZ1Ufnc.jpg", width=500)
+    st.title("🎤 RodriLetras")
+    st.markdown("""
+    Bienvenida/o a **RodriLetras**, una experiencia interactiva con las letras más icónicas de Olivia Rodrigo. 💜
+
+    Explora emociones, juega con fragmentos de canciones y redescubre lo que hace que sus letras conecten tanto con nosotras. Ya sea que estés despechada, enamorada o empoderada... aquí hay algo para ti.
+
+    Elige una opción del menú lateral para comenzar 👇
+    """)
 
 # ---------- BUSCADOR -----------
-if menu == "🔍 Buscador":
-    st.subheader("Buscar letras de canciones")
+elif menu == "🔍 Buscador":
+    st.header("🔍 Buscar letras de canciones")
     palabra = st.text_input("Ingresa una palabra clave:")
     album_filtrado = st.selectbox("Filtrar por álbum:", ["Todos"] + list(canciones_por_album.keys()))
 
-    if st.button("Buscar"):
+    if st.button("Buscar 🎧"):
         resultados = []
         for album, canciones in canciones_por_album.items():
             if album_filtrado != "Todos" and album != album_filtrado:
@@ -61,12 +98,13 @@ if menu == "🔍 Buscador":
 
         if resultados:
             for titulo, album, letra in resultados:
-                st.markdown(f"**{titulo}** ({album})\n> *{letra}*")
+                st.markdown(f"**🎵 {titulo}** ({album})\n> *{letra}*")
         else:
             st.warning("No se encontraron coincidencias.")
 
 # ---------- JUEGOS -----------
 elif menu == "🎮 Juegos":
+    st.header("🎮 Juegos con letras")
     juego = st.selectbox("Elige un juego:", ["🎵 Adivina la canción", "💿 ¿De qué álbum es?"])
 
     if juego == "🎵 Adivina la canción":
@@ -82,7 +120,7 @@ elif menu == "🎮 Juegos":
         st.markdown(f"> *{fragmento}*")
         respuesta = st.radio("Elige la canción:", opciones)
 
-        if st.button("Responder"):
+        if st.button("Responder 🎤"):
             if respuesta == correcta[0]:
                 st.success("✅ ¡Correcto!")
             else:
@@ -100,7 +138,7 @@ elif menu == "🎮 Juegos":
         st.markdown(f"> *{fragmento}*")
         respuesta = st.radio("Elige el álbum:", opciones)
 
-        if st.button("Revisar"):
+        if st.button("Revisar 💿"):
             if respuesta == album:
                 st.success("✅ ¡Correcto!")
             else:
@@ -108,9 +146,10 @@ elif menu == "🎮 Juegos":
 
 # ---------- JUEGO EMOCIONAL -----------
 elif menu == "🎭 Según tu emoción":
-    st.subheader("¿Cómo te sientes hoy?")
+    st.header("🎭 Elige tu emoción")
     emocion = st.select_slider("Desliza para elegir:", options=list(letras_por_emocion.keys()))
 
     if emocion:
         letra = random.choice(letras_por_emocion[emocion])
-        st.markdown(f"### Letra recomendada para ti ({emocion}):\n> *{letra}*")
+        st.markdown(f"### Letra recomendada para ti {emocion}:")
+        st.markdown(f"> *{letra}*")
