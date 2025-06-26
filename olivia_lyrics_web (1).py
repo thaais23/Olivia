@@ -6,7 +6,8 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #f8f0fb;
+        background-color: #f3e6fb;
+        margin-left: 22rem;
     }
     h1, h2, h3, h4 {
         font-family: Georgia, serif;
@@ -26,8 +27,8 @@ st.markdown(
         position: fixed !important;
         height: 100vh !important;
         overflow-y: auto;
-        background-color: #f8f0fb;
-        border-right: 1px solid #ccc;
+        background-color: #e5ccfa !important;
+        border-right: 2px solid #b37cd4;
         z-index: 999;
     }
     [data-testid=stSidebarContent] {
@@ -84,7 +85,6 @@ menu = st.sidebar.radio("Navegación:", ["🏠 Inicio", "🔍 Buscador", "🎮 J
 if menu == "🏠 Inicio":
     st.image("horizontal.jpg", use_container_width=True)
     st.title("🎤 RodriLetras")
-    st.image("olivia.png", width=300)
     st.markdown("""
     Bienvenida/o a **RodriLetras**, una experiencia interactiva con las letras más icónicas de Olivia Rodrigo. 💜
 
@@ -92,12 +92,6 @@ if menu == "🏠 Inicio":
 
     Elige una opción del menú lateral para comenzar 👇
     """)
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.image("sour.png", width=180)
-    with col2:
-        st.image("guts.png", width=180)
 
 # ---------- BUSCADOR -----------
 elif menu == "🔍 Buscador":
