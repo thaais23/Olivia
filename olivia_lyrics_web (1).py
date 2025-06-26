@@ -22,13 +22,16 @@ st.markdown(
         color: #4b007d;
         font-weight: bold;
     }
-    section[data-testid="stSidebar"] {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        overflow: auto;
+    [data-testid=stSidebar] {
+        position: fixed !important;
+        height: 100vh !important;
+        overflow-y: auto;
         background-color: #f8f0fb;
+        border-right: 1px solid #ccc;
+        z-index: 999;
+    }
+    [data-testid=stSidebarContent] {
+        padding-top: 2rem;
     }
     </style>
     """,
@@ -79,7 +82,7 @@ menu = st.sidebar.radio("Navegación:", ["🏠 Inicio", "🔍 Buscador", "🎮 J
 
 # ---------- INICIO -----------
 if menu == "🏠 Inicio":
-    st.image("horizontal.jpg", use_column_width=True)
+    st.image("horizontal.jpg", use_container_width=True)
     st.title("🎤 RodriLetras")
     st.image("olivia.png", width=300)
     st.markdown("""
@@ -90,8 +93,11 @@ if menu == "🏠 Inicio":
     Elige una opción del menú lateral para comenzar 👇
     """)
 
-    st.image("sour.png", width=150)
-    st.image("guts.png", width=150)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("sour.png", width=180)
+    with col2:
+        st.image("guts.png", width=180)
 
 # ---------- BUSCADOR -----------
 elif menu == "🔍 Buscador":
