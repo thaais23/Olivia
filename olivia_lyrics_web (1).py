@@ -22,6 +22,14 @@ st.markdown(
         color: #4b007d;
         font-weight: bold;
     }
+    section[data-testid="stSidebar"] {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow: auto;
+        background-color: #f8f0fb;
+    }
     </style>
     """,
     unsafe_allow_html=True
