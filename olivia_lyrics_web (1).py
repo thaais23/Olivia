@@ -65,14 +65,15 @@ letras_por_emocion = {
 # ---------- APP -----------
 st.set_page_config(page_title="Rodriletras", page_icon="🎵")
 
-st.sidebar.image("https://i.imgur.com/eI7yKvt.jpg", width=200)
+st.sidebar.image("logo.png", width=200)
 st.sidebar.title("RodriLetras 💜")
 menu = st.sidebar.radio("Navegación:", ["🏠 Inicio", "🔍 Buscador", "🎮 Juegos", "🎭 Según tu emoción"])
 
 # ---------- INICIO -----------
 if menu == "🏠 Inicio":
-    st.image("https://i.imgur.com/JZ1Ufnc.jpg", width=500)
+    st.image("horizontal.jpg", use_column_width=True)
     st.title("🎤 RodriLetras")
+    st.image("olivia.png", width=300)
     st.markdown("""
     Bienvenida/o a **RodriLetras**, una experiencia interactiva con las letras más icónicas de Olivia Rodrigo. 💜
 
@@ -80,6 +81,9 @@ if menu == "🏠 Inicio":
 
     Elige una opción del menú lateral para comenzar 👇
     """)
+
+    st.image("sour.png", width=150)
+    st.image("guts.png", width=150)
 
 # ---------- BUSCADOR -----------
 elif menu == "🔍 Buscador":
